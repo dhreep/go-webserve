@@ -17,12 +17,13 @@ func increment(w http.ResponseWriter, r *http.Request) {
 	fmt.Fprint(w, strconv.Itoa(counter))
 	mutex.Unlock()
 }
-// func homefunc(w http.ResponseWriter, r *http.Request) {
-// 	http.ServeFile(w,r,r.URL.Path[1:])
-// }
+
+//	func homefunc(w http.ResponseWriter, r *http.Request) {
+//		http.ServeFile(w,r,r.URL.Path[1:])
+//	}
 func main() {
 	fmt.Print("Hello World\n")
-	http.Handle("/",http.FileServer(http.Dir("./static")))
+	http.Handle("/", http.FileServer(http.Dir("./static")))
 	http.HandleFunc("/increment", increment)
 	http.HandleFunc("/decrement", func(w http.ResponseWriter, r *http.Request) {
 
